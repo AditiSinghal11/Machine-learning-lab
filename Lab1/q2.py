@@ -1,31 +1,15 @@
-r1 = int(input("Rows of Matrix A: "))
-c1 = int(input("Columns of Matrix A: "))
+def multiply(A, B):
+    if len(A[0]) != len(B):
+        print("Matrices cannot be multiplied")
+        return
 
-A = []
-print("Enter Matrix A:")
-for i in range(r1):
-    row = list(map(int, input().split()))
-    A.append(row)
-
-r2 = int(input("Rows of Matrix B: "))
-c2 = int(input("Columns of Matrix B: "))
-
-B = []
-print("Enter Matrix B:")
-for i in range(r2):
-    row = list(map(int, input().split()))
-    B.append(row)
-
-if c1 != r2:
-    print("Matrices cannot be multiplied.")
-else:
     result = []
 
-    for i in range(r1):
+    for i in range(len(A)):
         row = []
-        for j in range(c2):
+        for j in range(len(B[0])):
             total = 0
-            for k in range(c1):
+            for k in range(len(B)):
                 total += A[i][k] * B[k][j]
             row.append(total)
         result.append(row)
@@ -33,3 +17,9 @@ else:
     print("Product Matrix:")
     for row in result:
         print(row)
+
+
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+
+multiply(A, B)

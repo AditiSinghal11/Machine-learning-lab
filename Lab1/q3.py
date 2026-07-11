@@ -1,10 +1,14 @@
-list1 = list(map(int, input("Enter first list: ").split()))
-list2 = list(map(int, input("Enter second list: ").split()))
+def common_elements(list1, list2):
+    count = 0
 
-count = 0
+    for i in list1:
+        if i in list2:
+            count += 1
 
-for item in list1:
-    if item in list2:
-        count += 1
+    print("Common elements =", count)
 
-print("Number of common elements =", count)
+
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+
+common_elements(list1, list2)

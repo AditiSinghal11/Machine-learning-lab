@@ -1,16 +1,13 @@
-rows = int(input("Enter rows: "))
-cols = int(input("Enter columns: "))
+def transpose(matrix):
+    for i in range(len(matrix[0])):
+        for j in range(len(matrix)):
+            print(matrix[j][i], end=" ")
+        print()
 
-matrix = []
 
-print("Enter the matrix:")
-for i in range(rows):
-    row = list(map(int, input().split()))
-    matrix.append(row)
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
 
-print("Transpose:")
-
-for i in range(cols):
-    for j in range(rows):
-        print(matrix[j][i], end=" ")
-    print()
+transpose(matrix)

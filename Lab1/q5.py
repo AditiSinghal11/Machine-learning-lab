@@ -1,14 +1,16 @@
 import random
 import statistics
 
-numbers = []
+def calculate():
+    numbers = []
 
-for i in range(100):
-    numbers.append(random.randint(100, 150))
+    for i in range(100):
+        numbers.append(random.randint(100, 150))
 
-print("Random Numbers:")
-print(numbers)
+    print(numbers)
+    print("Mean =", statistics.mean(numbers))
+    print("Median =", statistics.median(numbers))
+    print("Mode =", statistics.mode(numbers))
 
-print("Mean =", statistics.mean(numbers))
-print("Median =", statistics.median(numbers))
-print("Mode =", statistics.mode(numbers))
+
+calculate()
