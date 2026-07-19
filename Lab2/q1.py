@@ -1,56 +1,37 @@
 import pandas as pd
 import numpy as np
 
-# Load Excel sheet
 def load_data():
-    df = pd.read_excel("Lab Session Data.xlsx", sheet_name="Purchase data")
+    df = pd.read_excel(
+        "C:/Users/91971/Downloads/Lab Session Data.xlsx",
+        sheet_name="Purchase data"
+    )
     return df
 
-# Separate features and output
-def get_matrices(df):
-    X = df[["Candies (#)", "Mangoes (Kg)", "Milk Packets (#)"]]
-    y = df["Payment (Rs)"]
-    return X, y
-
-# Find dimension of vector space
-def get_dimension(X):
-    return X.shape[1]
-
-# Find number of vectors
-def get_vectors(X):
-    return X.shape[0]
-
-# Find rank of feature matrix
-def get_rank(X):
-    return np.linalg.matrix_rank(X)
-
-# Find cost of each product using pseudo inverse
-def get_product_cost(X, y):
-    pseudo_inverse = np.linalg.pinv(X)
-    cost = np.dot(pseudo_inverse, y)
-    return cost
-
-# Main function
 def main():
-
     df = load_data()
 
-    X, y = get_matrices(df)
+    X = df[["Candies (#)", "Mangoes (Kg)", "Milk Packets (#)"]]
+    y = df["Payment (Rs)"]
 
-    print("Feature Matrix:")
+    print("Feature Matrix (X):")
     print(X)
 
-    print("\nOutput Vector:")
+    print("\nOutput Vector (y):")
     print(y)
 
-    print("\nDimension of Vector Space:", get_dimension(X))
+    print("\nDimension of Vector Space:", X.shape[1])
+    print("Number of Vectors:", X.shape[0])
 
-    print("Number of Vectors:", get_vectors(X))
+    rank = np.linalg.matrix_rank(X)
+    print("Rank of Feature Matrix:", rank)
 
-    print("Rank of Matrix:", get_rank(X))
+    cost = np.linalg.pinv(X) @ y
 
-    print("\nCost of each Product:")
-    print(get_product_cost(X, y))
+    print("\nCost of each product:")
+    print("Candies      :", round(cost[0], 2))
+    print("Mangoes      :", round(cost[1], 2))
+    print("Milk Packets :", round(cost[2], 2))
 
-# Run the program
-main()
+if __name__ == "__main__":
+    main()
